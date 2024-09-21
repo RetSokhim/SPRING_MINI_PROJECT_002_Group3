@@ -1,4 +1,5 @@
 #docker compose -f deploy-keycloak-compose.yml build
+#docker compose -f deploy-keycloak-compose.yml up
 services:
   postgres:
     image: postgres:latest
