@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.web.SecurityFilterChain;
 
 @KeycloakConfiguration
-public class SecurityConfig {
+public class KeycloakSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -28,7 +28,6 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .csrf(AbstractHttpConfigurer::disable);
-
         return http.build();
     }
 
