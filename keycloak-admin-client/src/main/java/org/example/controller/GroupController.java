@@ -23,10 +23,10 @@ public class GroupController {
 
     private final GroupService groupService;
 
-    @GetMapping("/get/group")
-    public String getGroup(){
-        return "Hello from group";
-    }
+//    @GetMapping("/get/group")
+//    public String getGroup(){
+//        return "Hello from group";
+//    }
 
     @PostMapping()
     public ResponseEntity<ApiResponse<Group>> createGroup(@RequestBody GroupRequest groupRequest){
@@ -42,7 +42,7 @@ public class GroupController {
     public ResponseEntity<ApiResponse<List<Group>>> getAllGroups(){
         ApiResponse<List<Group>> response = ApiResponse.<List<Group>>builder()
                 .status(HttpStatus.OK)
-                .message("All group are fetched successfully!")
+                .message("All groups are fetched successfully!")
                 .payload(groupService.getAllGroups())
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -52,42 +52,50 @@ public class GroupController {
     public ResponseEntity<ApiResponse<Group>> getGroupByGroupId(@PathVariable UUID groupId){
         ApiResponse<Group> response = ApiResponse.<Group>builder()
                 .status(HttpStatus.OK)
-                .message("A group with ID " + groupId + " is fetched successfully!")
+                .message("The group with ID " + groupId + " is fetched successfully!")
                 .payload(groupService.getGroupByGroupId(groupId))
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping({"{groupId}"})
-    public ResponseEntity<ApiResponse<Group>> updateGroupById(@PathVariable UUID groupId, @RequestBody Group group){
+    public ResponseEntity<ApiResponse<Group>> updateGroupById(@PathVariable UUID groupId, @RequestBody GroupRequest groupRequest){
         ApiResponse<Group> response = ApiResponse.<Group>builder()
                 .status(HttpStatus.OK)
                 .message("A group with ID " + groupId + " is updated successfully!")
-                .payload(groupService.updateGroupById(groupId, group))
+                .payload(groupService.updateGroupById(groupId, groupRequest))
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping({"{groupId}"})
-    public ResponseEntity<?> deleteGroupById(@PathVariable UUID groupId){
-        groupService.deleteGroupById(groupId);
-        ApiResponse<Group> response = ApiResponse.<Group>builder()
-                .status(HttpStatus.OK)
-                .message("A group with ID " + groupId + " is deleted successfully!")
-                .payload(null)
-                .build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    public ResponseEntity<String> deleteGroupById(@PathVariable UUID groupId){
+//        groupService.deleteGroupById(groupId);
+//        ApiResponse<Group> response = ApiResponse.<Group>builder()
+//                .status(HttpStatus.OK)
+//                .message("A group with ID " + groupId + " is deleted successfully!")
+//                .payload(null)
+//                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(groupService.deleteGroupById(groupId));
     }
 
     @PostMapping("{groupId}/user/{userId}")
-    public ResponseEntity<?> addUserToGroup(@PathVariable UUID groupId, @PathVariable UUID userId){
+    public ResponseEntity<String> addUserToGroup(@PathVariable UUID groupId, @PathVariable UUID userId){
+//        groupService.addUserToGroup(groupId, userId);
+//        ApiResponse<Group> response = ApiResponse.<Group>builder()
+//                .status(HttpStatus.OK)
+//                .message("A group with ID " + groupId + " is deleted successfully!")
+//                .payload(null)
+//                .build();
+//        return ResponseEntity.status(HttpStatus.OK).body(response);
 
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(groupService.addUserToGroup(groupId, userId));
     }
 
     @GetMapping("{groupId}/users")
-    public ResponseEntity<?> getAllUsersByGroupId(@PathVariable String groupId){
-        return null;
+    public ResponseEntity<List<User>> getAllUsersByGroupId(@PathVariable String groupId){
+//        groupService.getAllUsersByGroupId(groupId);
+        return ResponseEntity.status(HttpStatus.OK).body(groupService.getAllUsersByGroupId(groupId));
     }
 
 

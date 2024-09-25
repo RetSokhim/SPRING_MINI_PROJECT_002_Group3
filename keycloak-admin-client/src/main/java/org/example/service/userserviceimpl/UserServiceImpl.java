@@ -50,6 +50,8 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
         user.setEmail(userRequest.getEmail());
+        user.singleAttribute("lastModified",String.valueOf(LocalDateTime.now()));
+
         user.setEnabled(true);  // Enable the user
 
         // Set password
@@ -112,7 +114,7 @@ public class UserServiceImpl implements UserService {
             existingUser.setFirstName(userUpdateRequest.getFirstName());
             existingUser.setLastName(userUpdateRequest.getLastName());
             existingUser.setEmail(userUpdateRequest.getEmail());
-            existingUser.singleAttribute("lastModify", String.valueOf(LocalDateTime.now()));
+            existingUser.singleAttribute("lastModified", String.valueOf(LocalDateTime.now()));
             // Update the user in Keycloak
             usersResource.get(id.toString()).update(existingUser);
 
