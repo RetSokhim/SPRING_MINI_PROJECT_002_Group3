@@ -20,6 +20,6 @@ public class TaskRequest {
     private String groupId;
 
     public Task toEntity(){
-        return new Task(null,this.taskName,this.description,this.createBy,this.assignedTo,this.groupId,LocalDateTime.now(),null);
+        return new Task(null,this.taskName,this.description,this.createBy,this.assignedTo,this.groupId,LocalDateTime.now(),LocalDateTime.now());
     }
 }
