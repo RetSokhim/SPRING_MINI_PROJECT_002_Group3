@@ -3,7 +3,9 @@ package org.example.model.mapper;
 import org.example.model.User;
 import org.keycloak.representations.idm.UserRepresentation;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,17 +19,20 @@ public class UserMapper {
         user.setFirstName(userRepresentation.getFirstName());
         user.setLastName(userRepresentation.getLastName());
 
-        // Handle createdDate and lastModified if they are stored in Keycloak attributes
+        // Use createdTimestamp instead of custom attribute
+        if (userRepresentation.getCreatedTimestamp() != null) {
+            user.setCreatedDate(Instant.ofEpochMilli(userRepresentation.getCreatedTimestamp())
+                    .atZone(ZoneId.systemDefault()).toLocalDateTime());
+        }
+
+        // Handle lastModified if stored in attributes
         if (userRepresentation.getAttributes() != null) {
-            List<String> createdDateList = userRepresentation.getAttributes().get("createdDate");
-            if (createdDateList != null && !createdDateList.isEmpty()) {
-                user.setCreatedDate(LocalDateTime.parse(createdDateList.get(0)));
-            }
-            List<String> lastModifiedList = userRepresentation.getAttributes().get("lastModified");
+            List<String> lastModifiedList = userRepresentation.getAttributes().get("lastModify");
             if (lastModifiedList != null && !lastModifiedList.isEmpty()) {
-                user.setLastModified(LocalDateTime.parse(lastModifiedList.get(0)));
+                user.setLastModified(LocalDateTime.parse(lastModifiedList.getFirst()));
             }
         }
+
         return user;
     }
 }
