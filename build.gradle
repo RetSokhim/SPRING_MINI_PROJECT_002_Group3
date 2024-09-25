@@ -69,6 +69,7 @@ allprojects {
             implementation 'org.springframework.boot:spring-boot-starter-webflux'
             implementation 'org.springframework.boot:spring-boot-starter-actuator'
         }else if (project.name.equalsIgnoreCase("task-service")) {
+            implementation 'io.github.openfeign:feign-micrometer:13.3'
             implementation 'org.keycloak:keycloak-spring-boot-starter:25.0.3'
             implementation 'org.keycloak:keycloak-admin-client:25.0.6'
             implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -85,6 +86,7 @@ allprojects {
             implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
             runtimeOnly 'org.postgresql:postgresql'
         } else if (project.name.equalsIgnoreCase("keycloak-admin-client")) {
+            implementation 'io.github.openfeign:feign-micrometer:13.3'
             implementation 'org.keycloak:keycloak-spring-boot-starter:25.0.3'
             implementation 'org.keycloak:keycloak-admin-client:25.0.6'
             implementation 'org.springframework.boot:spring-boot-starter-security'

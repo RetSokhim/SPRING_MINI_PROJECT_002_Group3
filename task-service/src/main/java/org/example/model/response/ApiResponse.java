@@ -7,16 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-import java.time.LocalDateTime;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ApiResponse<T> {
+public class ApiResponse <T>{
     private HttpStatus status;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T payload;
 }
-
-
