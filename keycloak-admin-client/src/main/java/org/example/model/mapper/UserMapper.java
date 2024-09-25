@@ -27,7 +27,7 @@ public class UserMapper {
 
         // Handle lastModified if stored in attributes
         if (userRepresentation.getAttributes() != null) {
-            List<String> lastModifiedList = userRepresentation.getAttributes().get("lastModify");
+            List<String> lastModifiedList = userRepresentation.getAttributes().get("lastModified");
             if (lastModifiedList != null && !lastModifiedList.isEmpty()) {
                 user.setLastModified(LocalDateTime.parse(lastModifiedList.getFirst()));
             }
