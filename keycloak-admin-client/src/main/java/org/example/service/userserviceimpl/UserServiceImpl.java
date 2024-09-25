@@ -16,6 +16,7 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -111,7 +112,7 @@ public class UserServiceImpl implements UserService {
             existingUser.setFirstName(userUpdateRequest.getFirstName());
             existingUser.setLastName(userUpdateRequest.getLastName());
             existingUser.setEmail(userUpdateRequest.getEmail());
-
+            existingUser.singleAttribute("lastModify", String.valueOf(LocalDateTime.now()));
             // Update the user in Keycloak
             usersResource.get(id.toString()).update(existingUser);
 
