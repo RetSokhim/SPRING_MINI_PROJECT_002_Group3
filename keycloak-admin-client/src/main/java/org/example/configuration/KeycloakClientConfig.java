@@ -12,7 +12,7 @@ import static org.keycloak.OAuth2Constants.CLIENT_CREDENTIALS;
 @Configuration
 public class KeycloakClientConfig {
 
-    @Value("${keycloak.credentials.secret}")
+    @Value("6puVXtDtCu6813sSGvAD4DBTkXZXeoqi")
     private String secretKey;
 
     @Value("${keycloak.resource}")
