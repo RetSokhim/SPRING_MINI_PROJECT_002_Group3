@@ -1,10 +1,10 @@
 package org.example.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/group")
@@ -16,4 +16,29 @@ public class GroupController {
     public String getGroup(){
         return "Hello from group";
     }
+
+    @PostMapping("{groupId}/user/{userId}")
+    public ResponseEntity<?> addUserToGroup(@PathVariable UUID groupId, @PathVariable UUID userId){
+
+        return null;
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> getAllGroups(){
+        return null;
+    }
+
+    @GetMapping("{groupId}")
+    public ResponseEntity<?> getGroupByGroupId(){
+        return null;
+    }
+
+    @PutMapping()
+    public ResponseEntity<?> updateGroup(@RequestBody Group group){
+        return null;
+    }
+
+
+
+
 }
