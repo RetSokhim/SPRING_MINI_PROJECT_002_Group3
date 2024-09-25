@@ -9,7 +9,6 @@ import org.example.model.response.AddUserToGroupResponse;
 import org.example.model.response.ApiResponse;
 import org.example.model.response.UserListResponse;
 import org.example.service.GroupService;
-import org.keycloak.admin.client.resource.GroupResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
