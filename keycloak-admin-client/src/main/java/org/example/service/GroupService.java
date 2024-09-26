@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.model.Group;
 import org.example.model.User;
 import org.example.model.request.GroupRequest;
+import org.example.model.response.AddUserToGroupResponse;
+import org.example.model.response.UserListResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public interface GroupService {
 
     String deleteGroupById(UUID groupId);
 
-    String addUserToGroup(UUID groupId, UUID userId);
+    AddUserToGroupResponse addUserToGroup(UUID groupId, UUID userId);
 
-    List<User> getAllUsersByGroupId(String groupId);
+    UserListResponse getAllUsersByGroupId(String groupId);
 }
