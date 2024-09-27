@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static org.keycloak.OAuth2Constants.CLIENT_CREDENTIALS;
-
 @Configuration
 public class KeycloakClientConfig {
 
@@ -32,7 +30,7 @@ public class KeycloakClientConfig {
                 .realm(realm)
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)  // Correct constant for client credentials grant type
                 .clientId(clientId)
-                .clientSecret(secretKey)
+                .clientSecret("MJDHnP71tvUzYmKn43rYICLNmpwPxcF5")
                 .build();
     }
 }

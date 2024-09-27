@@ -16,10 +16,13 @@ class FeignClientInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        log.debug("FeignClientInterceptor -> apply CALLED");
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof JwtAuthenticationToken jwtAuthToken) {
+            log.info("JWT Token found: {}", jwtAuthToken.getToken().getTokenValue());
             requestTemplate.header(AUTHORIZATION_HEADER, String.format("%s %s", TOKEN_TYPE, jwtAuthToken.getToken().getTokenValue()));
+        } else {
+            log.warn("No JWT Token found in SecurityContextHolder. Authentication is: {}", authentication);
         }
     }
 }
+

@@ -51,7 +51,6 @@ public class GroupServiceImpl implements GroupService {
         // Handle response
         if (response.getStatus() == 201) {
             // Fetch the newly created user by ID
-            String groupId = CreatedResponseUtil.getCreatedId(response);
             GroupRepresentation representation = groupResource.group(CreatedResponseUtil.getCreatedId(response)).toRepresentation();
 
             if (representation != null) {
@@ -122,7 +121,7 @@ public class GroupServiceImpl implements GroupService {
             }
 
             // Delete the user
-            groupsResource.group(String.valueOf(groupId)).remove();;
+            groupsResource.group(String.valueOf(groupId)).remove();
             return "Group successfully deleted";
         } catch (NotFoundException e) {
             throw e;  // Rethrow if user not found

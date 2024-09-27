@@ -6,7 +6,7 @@ spring:
       server:
         git:
           uri: https://github.com/RetSokhim/configuration-repo-mini-project
-          default-label: sokmean
+          default-label: main
           timeout: 10000
           clone-on-start: true
 server:

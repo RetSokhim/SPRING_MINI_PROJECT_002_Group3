@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.example.model.enumeration.SortDirection;
 import org.example.model.request.TaskRequest;
 import org.example.model.response.ApiResponse;
 import org.example.model.response.TaskResponse;
@@ -43,11 +44,16 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity<?> getAllTask() {
+    public ResponseEntity<?> getAllTask(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "taskId") String sortField,
+            @RequestParam(defaultValue = "ASC") SortDirection sortDirection // Default value added
+    ) {
         ApiResponse<List<TaskResponse>> response = ApiResponse.<List<TaskResponse>>builder()
                 .status(HttpStatus.OK)
                 .message("Get all tasks successfully!")
-                .payload(taskService.getAllTask())
+                .payload(taskService.getAllTask(page, size, sortField, sortDirection))
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
