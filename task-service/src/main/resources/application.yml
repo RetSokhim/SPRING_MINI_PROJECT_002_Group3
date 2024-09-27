@@ -1,28 +1,7 @@
 spring:
   application:
     name: task-service
-  main:
-    allow-bean-definition-overriding: true
   config:
     import: optional:configserver:http://localhost:8888
-resilience4j:
-  circuitbreaker:
-    instances:
-      groupService:
-        slidingWindowSize: 10
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5s
-        automatic-transition-from-open-to-half-open-enabled: true
-        permittedNumberOfCallsInHalfOpenState: 5
-        register-health-indicator: true
-        minimum-number-of-calls: 5
-      userService:
-        slidingWindowSize: 10
-        failureRateThreshold: 50
-        waitDurationInOpenState: 5s
-        automatic-transition-from-open-to-half-open-enabled: true
-        permittedNumberOfCallsInHalfOpenState: 5
-        register-health-indicator: true
-        minimum-number-of-calls: 5
 server:
   port: 8082

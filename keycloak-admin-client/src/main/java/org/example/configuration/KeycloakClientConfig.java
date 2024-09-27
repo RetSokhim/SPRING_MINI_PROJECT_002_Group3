@@ -30,7 +30,7 @@ public class KeycloakClientConfig {
                 .realm(realm)
                 .grantType(OAuth2Constants.CLIENT_CREDENTIALS)  // Correct constant for client credentials grant type
                 .clientId(clientId)
-                .clientSecret("MJDHnP71tvUzYmKn43rYICLNmpwPxcF5")
+                .clientSecret(secretKey)
                 .build();
     }
 }
